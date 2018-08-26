@@ -1,5 +1,7 @@
-简易博客系统
-1.初始化项目
+# 简易博客系统
+
+## 1.初始化项目
+
     1.创建项目的根目录 blog
     2.创建了public目录 将静态资源复制到了public文件夹中
     3.创建了views目录 用以放置模板文件
@@ -34,33 +36,36 @@
             8.配置骨架路径
             9.配置默认骨架
             10.抽离骨架与模板公共部分并引入
-2.创建前后端主路由  express.Router()
+## 2.创建前后端主路由  express.Router()
+
     1.将主路由挂在请求路径 前端 /home 后端 /admin
     2.抽取后端页面骨架
     3.抽取后端公共部分
     4.区分前后端公共部分
 
-3.数据库配置
+## 3.数据库配置
+
     1.下载第三方模块mysql npm install mysql --save
     2.创建数据库连接 并且将连接代码放置在单独的目录中
     3.将数据路连接对象暴露出去
 
-4.实现业务逻辑
+## 4.实现业务逻辑
+
     1.注册
         1.接收post参数 npm install body-parser --save
         2.配置bodyParser app.use(bodyParser.urlencoded({ extended: false }));
     2.登录
 
+## 5.项目目录
 
-
-项目目录
     public 放置静态资源(css/image/js)
     views  放置模板文件 原public中的html文件改了成handlebars文件
     model  放置数据库连接文件
     routes 放置路由文件以及业务逻辑
     node_modules nodejs的第三方模块
 
-项目文件
+## 项目文件
+
     .gitignore         git忽略清单文件
     app.js             项目的主文件
     package.json       项目描述文件 记录项目信息
