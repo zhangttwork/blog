@@ -6,8 +6,16 @@ const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
-
+// 处理session
+app.use(session({
+    secret:'keyboard cat',
+    resave:false,
+    saveUninitialized:true,
+    // 在https环境下使用
+    // cookie:{secure:true}
+}));
 
 
 // connection.query('select * from posts',(err,rows) => {
@@ -19,9 +27,10 @@ const bodyParser = require('body-parser');
 // 开放静态资源目录
 app.use(express.static(path.join(__dirname,'public')));
 
-
+// 处理post方式 传递的参数
 app.use(bodyParser.urlencoded({extended:false}));
 
+// 配置模版引擎的路径 及 代码抽离
 app.engine('handlebars',exphbs({
     partialsDir:[{
         dir:path.join(__dirname,'views','home','partials'),
@@ -39,8 +48,6 @@ app.engine('handlebars',exphbs({
 app.set('views',path.join(__dirname,'views'));
 
 app.set('view engine','handlebars');
-
-// 创建一级路由
 
 
 // 导入前端home路由模块，返回前端路由一级路由对象

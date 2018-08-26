@@ -1,5 +1,5 @@
 const express = require('express');
-const connection = require('../model/db.js');
+const connection = require('../module/db.js');
 const home = express.Router();
 const md5 = require('md5');
 
@@ -75,9 +75,17 @@ home.post('/login',(req,res) => {
             res.send({err:100,message:'用户名不存在'});
         }else {
             if(rows[0].pass == md5(pass)){
+                // 引入express-session模块后，在req对象下面就多出了一个session对象，
+                // 1.为当前用户生成了一个唯一的sessionID
+                // 2.将sessionId通过cookie形式存储到了客户端
+                // 3.当客户端发来请求的时候，自动解析cookie中存储的sessionID
+                // 4.看这个sessionID在服务器中是否存在
+                // 5.
+
+                req.session.isLogin = true; 
                 res.send({success:true,message:'登录成功'})
             }else{
-                res.send({err:200,message:'密码错误'});
+                res.send({err:200,message:'用户名或密码错误'});
             }
         }
     });

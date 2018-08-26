@@ -1,11 +1,13 @@
 const express = require('express');
-const connection = require('../model/db.js');
+const connection = require('../module/db.js');
 
 
 const admin= express.Router();
 
 
 admin.get('/index',(req,res) => {
+    console.log(req.session.isLogin);
+    console.log(111);
     res.render('admin/index',{
         layout:'admin'
     });
